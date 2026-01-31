@@ -199,15 +199,12 @@ namespace UTS
                 using (StreamWriter writer = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
                 {
                     DataTable dt = DataStore.listDataKaryawan;
-
-                    // Header
+                    
                     string[] headers = dt.Columns
                         .Cast<DataColumn>()
                         .Select(c => c.ColumnName)
                         .ToArray();
                     writer.WriteLine(string.Join(",", headers));
-
-                    // Data
                     foreach (DataRow row in dt.Rows)
                     {
                         string[] values = row.ItemArray
@@ -253,8 +250,7 @@ namespace UTS
 
             StringFormat rightAlign = new StringFormat();
             rightAlign.Alignment = StringAlignment.Far;
-
-            // Center Text
+            
             e.Graphics.DrawString(
                 "LAPORAN DATA KARYAWAN",
                 new Font("Arial", 14, FontStyle.Bold),
@@ -264,8 +260,6 @@ namespace UTS
             );
 
             yPos += 40;
-
-            // RIGHT TEXT
             e.Graphics.DrawString(
                  "Tanggal Cetak: " + DateTime.Now.ToString("dd/MM/yyyy"),
                 font,
@@ -275,8 +269,6 @@ namespace UTS
             );
             yPos += 40;
 
-
-            //Header
             e.Graphics.DrawString("No", headerFont, Brushes.Black, leftMargin, yPos);
             e.Graphics.DrawString("NIP", headerFont, Brushes.Black, leftMargin + 40, yPos);
             e.Graphics.DrawString("Nama", headerFont, Brushes.Black, leftMargin + 100, yPos);
